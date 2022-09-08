@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width" />
+    <title>不会么？</title>
+    <script>
+      const metaDict = {
+        buhuime: {
+          name_cn: "不会么",
+          name_en: "Buhuime",
+          url: "https://buhui.me",
+        },
+        baidu: {
+          name_cn: "百度",
+          name_en: "Baidu",
+          url: "https://www.baidu.com",
+        },
+        google: {
+          name_cn: "谷歌",
+          name_en: "Google",
+          url: "https://www.google.com",
+        },
+        wikipedia: {
+          name_cn: "维基百科",
+          name_en: "Wikipedia",
+          url: "https://www.wikipedia.org",
+        },
+      };
+      window.onload = function () {
+        const query = window.location.search.toLowerCase().replace("=", "").slice(1);
+        meta = metaDict[query || "buhuime"] ?? {
+          name_cn: ' ' + query.charAt(0).toUpperCase() + query.slice(1) + ' ',
+          name_en: query.charAt(0).toUpperCase() + query.slice(1),
+          url: "https://www." + query + ".com",
+        };
+
+        question_cn = "你不会" + meta["name_cn"] + "么？";
+        question_en = "Can’t you " + meta["name_en"] + "?";
+        url = meta["url"];
+
+        document.title = document.getElementById("question_cn").innerHTML =
+          question_cn;
+        document.getElementById("question_en").innerHTML = question_en;
+        document.getElementById("url").href = url;
+        document.getElementById("screenshot").src =
+          "https://s0.wp.com/mshots/v1/" + url + "/?w=300&h=200";
+      };
+    </script>
+    <style>
+      body {
+        font-family: Sans-serif;
+      }
+      div {
+        text-align: center;
+      }
+      a {
+        color: grey;
+      }
+      img {
+        border: 1px solid grey;
+        border-radius: 1rem;
+      }
+    </style>
+  </head>
+
+  <body>
+    <div>
+      <h1 id="question_cn"></h1>
+      <h2 id="question_en"></h2>
+      <a id="url">
+        <img id="screenshot" />
+      </a>
+    </div>
+  </body>
+</html>
