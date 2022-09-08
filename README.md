@@ -4,7 +4,7 @@
 ```
 https://buhui.me?<website name>
 ```
-注：对于未在 `metaDict` 中定义的网站，会默认生成 `https://www.<website name>.com` 作为跳转链接，如有自定义需求欢迎 PR。
+注：对于未在 `meta-dict.js` 中定义的网站，会默认生成 `https://www.<website name>.com` 作为跳转链接，如有自定义需求欢迎 PR。
 
 ## 用例
 > 问：Python 怎么安？

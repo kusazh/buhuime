@@ -1,105 +1,73 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width" />
-    <title>不会么？</title>
-    <script>
-      const metaDict = {
-        buhuime: {
-          name_cn: "不会么",
-          name_en: "Buhuime",
-          url: "https://buhui.me",
-          screenshot: "buhuime.jpg",
-        },
-        baidu: {
-          name_cn: "百度",
-          name_en: "Baidu",
-          url: "https://www.baidu.com",
-        },
-        google: {
-          name_cn: "谷歌",
-          name_en: "Google",
-          url: "https://www.google.com",
-        },
-        wikipedia: {
-          name_cn: "维基百科",
-          name_en: "Wikipedia",
-          url: "https://www.wikipedia.org",
-        },
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width" />
+  <title>不会么？</title>
+  <script src="meta-dict.js"></script>
+  <script>
+    window.onload = function () {
+      const query =
+        window.location.search.toLowerCase().replace("=", "").slice(1) ||
+        "buhuime";
+      meta = metaDict[query] ?? {
+        name_cn: " " + query.charAt(0).toUpperCase() + query.slice(1) + " ",
+        name_en: query.charAt(0).toUpperCase() + query.slice(1),
       };
-      window.onload = function () {
-        const query = window.location.search
-          .toLowerCase()
-          .replace("=", "")
-          .slice(1);
-        meta = metaDict[query || "buhuime"] ?? {
-          name_cn: " " + query.charAt(0).toUpperCase() + query.slice(1) + " ",
-          name_en: query.charAt(0).toUpperCase() + query.slice(1),
-          url: "https://www." + query + ".com",
-        };
 
-        question_cn = "你不会" + meta["name_cn"] + "么？";
-        question_en = "Can’t you " + meta["name_en"] + "?";
-        url = meta["url"];
-        screenshot =
-          meta["screenshot"] ??
-          "https://s0.wp.com/mshots/v1/" + url + "/?w=300&h=200";
+      question_cn = "你不会" + meta["name_cn"] + "么？";
+      question_en = "Can’t you " + meta["name_en"] + "?";
+      url = meta["url"] ?? "https://www." + query + ".com";
+      screenshot =
+        meta["screenshot"] ??
+        "https://s0.wp.com/mshots/v1/" + url + "/?w=300&h=200";
 
-        document.title = document.getElementById("question_cn").innerHTML =
-          question_cn;
-        document.getElementById("question_en").innerHTML = question_en;
-        document.getElementById("url").href = url;
-        document.getElementById("screenshot").src = screenshot;
-      };
-    </script>
-    <style>
-      body {
-        font-family: Sans-serif;
-      }
-      div {
-        text-align: center;
-      }
-      a {
-        color: grey;
-      }
-      img {
-        border: 1px solid grey;
-        border-radius: 1rem;
-      }
-    </style>
-  </head>
+      document.title = document.getElementById("question_cn").innerHTML =
+        question_cn;
+      document.getElementById("question_en").innerHTML = question_en;
+      document.getElementById("url").href = url;
+      document.getElementById("screenshot").src = screenshot;
+    };
+  </script>
+  <style>
+    body {
+      font-family: Sans-serif;
+    }
 
-  <body>
-    <div>
-      <h1 id="question_cn"></h1>
-      <h2 id="question_en"></h2>
-      <p>
-        <a id="url">
-          <img id="screenshot" />
-        </a>
-      </p>
-      <p>
-        <a
-          href="https://twitter.com/share?ref_src=twsrc%5Etfw"
-          class="twitter-share-button"
-          data-show-count="false"
-          >Tweet</a
-        >
-        <a
-          class="github-button"
-          href="https://github.com/kusazh/buhuime"
-          data-icon="octicon-star"
-          aria-label="Star kusazh/buhuime on GitHub"
-          >Star</a
-        >
-      </p>
-    </div>
-    <script
-      async
-      src="https://platform.twitter.com/widgets.js"
-      charset="utf-8"
-    ></script>
-    <script async defer src="https://buttons.github.io/buttons.js"></script>
-  </body>
+    div {
+      text-align: center;
+    }
+
+    a {
+      color: grey;
+    }
+
+    img {
+      border: 1px solid grey;
+      border-radius: 1rem;
+    }
+  </style>
+</head>
+
+<body>
+  <div>
+    <h1 id="question_cn"></h1>
+    <h2 id="question_en"></h2>
+    <p>
+      <a id="url">
+        <img id="screenshot" />
+      </a>
+    </p>
+    <p>
+      <a href="https://twitter.com/share?ref_src=twsrc%5Etfw" class="twitter-share-button"
+        data-show-count="false">Tweet</a>
+      <a class="github-button" href="https://github.com/kusazh/buhuime" data-icon="octicon-star"
+        aria-label="Star kusazh/buhuime on GitHub">Star</a>
+    </p>
+  </div>
+  <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+  <script async defer src="https://buttons.github.io/buttons.js"></script>
+</body>
+
 </html>
