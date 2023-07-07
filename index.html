@@ -8,7 +8,7 @@
   <script src="meta-dict.js"></script>
   <script>
     window.onload = function () {
-      const query =
+      let query =
         window.location.search.toLowerCase().replace("=", "").slice(1) ||
         "buhuime";
       meta = metaDict[query] ?? {
@@ -18,10 +18,15 @@
 
       question_cn = "你不会" + meta["name_cn"] + "么？";
       question_en = "Can’t you " + meta["name_en"] + "?";
-      url = meta["url"] ?? "https://www." + query + ".com";
+      url = meta["url"] ?? query;
+      if (!query.includes("."))
+        query = `www.${query}.com`;
+      if (!query.startsWith("http"))
+        query = "https://" + query
+      console.log(query);
       screenshot =
         meta["screenshot"] ??
-        "https://s0.wp.com/mshots/v1/" + url + "/?w=300&h=200";
+        `https://s0.wp.com/mshots/v1/${encodeURIComponent(url)}?w=300&h=200`;
 
       document.title = document.getElementById("question_cn").innerHTML =
         question_cn;
