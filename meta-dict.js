@@ -2,7 +2,7 @@ const metaDict = {
   buhuime: {
     name_cn: "不会么",
     name_en: "Buhuime",
-    url: "https://buhui.me",
+    url: "https://kus.ai/buhuime",
     screenshot: "buhuime.jpg",
   },
   kusai: {
